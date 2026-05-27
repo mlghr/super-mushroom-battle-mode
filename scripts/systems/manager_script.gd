@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var player_scene = preload("res://scenes/actors/player/player.tscn")
 @onready var skeleton_scene = preload("res://scenes/actors/enemy/skeleton.tscn")
 @onready var slime_scene = preload("res://scenes/actors/enemy/slime.tscn")
 @onready var sandbag_scene = preload("res://scenes/actors/enemy/sandbag.tscn")
@@ -34,6 +35,8 @@ var game_over: bool = false
 
 
 func _ready() -> void:
+	spawn_players()
+	
 	get_tree().node_added.connect(_on_node_added)
 
 	connect_signals()
@@ -122,6 +125,20 @@ func _on_item_picked_up(item_object: Node2D, player: Node2D) -> void:
 # spawn logic
 # -------------------------
 
+func spawn_players() -> void:
+	var player1 = player_scene.instantiate()
+	var player2 = player_scene.instantiate()
+	
+	player1.player_id = 1
+	player1.input_prefix = "p1_"
+	player1.global_position = $Player1SpawnPoint.global_position
+
+	player2.player_id = 2
+	player2.input_prefix = "p2_"
+	player2.global_position = $Player2SpawnPoint.global_position
+	
+	add_child(player1)
+	add_child(player2)
 
 func spawn_skeleton() -> void:
 	if spawn_points.is_empty() or not spawn_active or skeleton_count >= 3:
@@ -177,7 +194,7 @@ func spawn_coin() -> void:
 func spawn_switcheroo() -> void:
 	var point: Node2D = spawn_points.pick_random()
 	var switcheroo: RigidBody2D = switcheroo_scene.instantiate()
-	switcheroo.global_position = switcheroo.global_position
+	switcheroo.global_position = point.global_position
 	add_child(switcheroo)
 
 	if point.name == "SpawnPointRight":
@@ -253,8 +270,6 @@ func _on_SpawnTimer_timeout() -> void:
 		pass
 		#spawn_skeleton()
 		#spawn_slime()
-	
-	print('total enemies: ', total_enemy_count)
 
 
 func start_next_round() -> void:
