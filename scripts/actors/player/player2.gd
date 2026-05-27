@@ -165,13 +165,13 @@ func update_animation():
 	#---------------------------------------------
 	# Health updates
 	if health > 2:
-		health_bar.play("Player_One_Full")
+		health_bar.play("Player_Two_Full")
 	elif health > 1:
-		health_bar.play("Player_One_Two_HP")
+		health_bar.play("Player_Two_Two_HP")
 	elif health > 0:
-		health_bar.play("Player_One_HP")
+		health_bar.play("Player_Two_HP")
 	else:
-		health_bar.play("Player_One_Empty")
+		health_bar.play("Player_Two_Empty")
 	
 	#---------------------------------------------
 	# Coin updates

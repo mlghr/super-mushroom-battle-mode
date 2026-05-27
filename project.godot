@@ -27,11 +27,17 @@ window/size/viewport_height=1080
 [file_customization]
 
 folder_colors={
-"res://scripts/actors/": "orange",
+"res://assets/": "red",
+"res://docs/": "orange",
+"res://scenes/": "yellow",
+"res://scripts/": "green",
+"res://scripts/actors/": "red",
 "res://scripts/actors/enemy/": "red",
 "res://scripts/actors/player/": "blue",
+"res://scripts/menus/": "orange",
 "res://scripts/systems/": "yellow",
-"res://scripts/world/": "green"
+"res://scripts/utils/": "green",
+"res://scripts/world/": "blue"
 }
 
 [global_group]
@@ -40,6 +46,7 @@ player=""
 enemy=""
 blocks=""
 coin=""
+item=""
 
 [input]
 

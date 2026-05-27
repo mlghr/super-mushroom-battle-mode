@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cnp1odq7y7l18"]
+
+[ext_resource type="Script" uid="uid://dt1lgkfl7snv3" path="res://scenes/items/switcheroo.gd" id="1_dq2tr"]
+[ext_resource type="Texture2D" uid="uid://6ky3v8t1sybk" path="res://assets/Custom/Items/Switcharoo.png" id="2_ffcpw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffcpw"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffcpw"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0bwm"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpdot"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2uw4"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_equ58"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knirk"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cm43"]
+atlas = ExtResource("2_ffcpw")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0bwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffcpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0bwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpdot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2uw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_equ58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knirk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cm43")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dq2tr"]
+radius = 8.0
+
+[node name="switcheroo" type="RigidBody2D" unique_id=852996738 groups=["item"]]
+lock_rotation = true
+script = ExtResource("1_dq2tr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1481880258]
+shape = SubResource("CircleShape2D_ffcpw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1204833306]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_l0bwm")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1776764841]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=783448864]
+shape = SubResource("CircleShape2D_dq2tr")
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1407887167]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_l0bwm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

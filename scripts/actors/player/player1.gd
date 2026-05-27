@@ -264,14 +264,29 @@ func handle_invincibility():
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()
+	var y_bounce_factor = -400
+	var x_bounce_factor = 100
 
 	# vertical stacking (standing on another player)
 	if normal.y < -0.9:
 		standing_on_body = true
 
 		# Ride the player underneath like a moving platform.
-		if abs(global_position.x - other.global_position.x) < 24:
-			carried_velocity.x = other.velocity.x
+		if abs(self.global_position.x - other.global_position.x) < 24:
+			pass
+			#carried_velocity.x = other.velocity.x
+			if not other.is_on_floor:
+				other.velocity.y = 100
+				velocity.y = y_bounce_factor
+			
+			else :
+				other.velocity.y = 100
+				velocity.y = y_bounce_factor / 2
+			if self.global_position.x > other.global_position.x:
+				velocity.x = x_bounce_factor
+			else: 
+				velocity.x = x_bounce_factor * -1
+			
 
 		# If the bottom player jumps up into us, keep us attached so we don't "pin" them.
 		if other.velocity.y < 0 and velocity.y >= 0:
