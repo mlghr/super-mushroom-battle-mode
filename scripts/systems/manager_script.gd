@@ -14,7 +14,7 @@ extends Node2D
 
 
 # settings
-var spawn_on_start: bool = false
+var spawn_on_start: bool = true
 var spawn_interval: float = 7.0
 var spawn_active: bool = true # press escape to toggle skeletons spawning for debug purposes
 

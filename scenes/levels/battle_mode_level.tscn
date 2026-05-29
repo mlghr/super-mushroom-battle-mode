@@ -217,7 +217,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4klte")
 }],
 "loop": true,
-"name": &"Player_One_HP",
+"name": &"Player_One_One_HP",
 "speed": 5.0
 }, {
 "frames": [{
@@ -512,22 +512,22 @@ tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD8//3/AAAAAAAAAQD7//3/AAAAAAA
 tile_set = SubResource("TileSet_6lkky")
 
 [node name="Player1Health" type="AnimatedSprite2D" parent="." unique_id=1216891099]
-position = Vector2(40, 22)
+position = Vector2(-40, 22)
 sprite_frames = SubResource("SpriteFrames_au1n6")
-animation = &"Player_One_Full"
+animation = &"Player_One_One_HP"
 
 [node name="Player2Health" type="AnimatedSprite2D" parent="." unique_id=817622244]
-position = Vector2(-40, 22)
+position = Vector2(40, 22)
 sprite_frames = SubResource("SpriteFrames_q7q0o")
 animation = &"Player_Two_Full"
 
 [node name="Player1Coins" type="AnimatedSprite2D" parent="." unique_id=214599493]
-position = Vector2(70, 25)
+position = Vector2(-67, 25)
 sprite_frames = SubResource("SpriteFrames_7hhwi")
 animation = &"Coins_Two"
 
 [node name="Player2Coins" type="AnimatedSprite2D" parent="." unique_id=1388853874]
-position = Vector2(-67, 25)
+position = Vector2(70, 25)
 sprite_frames = SubResource("SpriteFrames_s0xqe")
 animation = &"Coins_Two"
 
@@ -539,7 +539,7 @@ offset_bottom = -112.0
 position = Vector2(-2, -103)
 
 [node name="Player2SpawnPoint" type="Node2D" parent="." unique_id=727377937]
-position = Vector2(1, -101)
+position = Vector2(2, -103)
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]

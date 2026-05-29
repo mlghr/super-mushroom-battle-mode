@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var combo_timer = $ComboTimer
 @onready var dash_timer = $DashTimer
 @onready var combo_label = $ComboLabel
-@onready var health_bar = $"../Player1Health"
-@onready var coin_bar = $"../Player1Coins"
+var health_bar 
+var coin_bar
 
 @export var player_id := 1
 @export var input_prefix := "p1_"
@@ -45,8 +45,11 @@ func _ready():
 	match input_prefix:
 		"p1_":
 			color = "_Red"
+			$AnimatedSprite2D.flip_h = true
 		"p2_":
 			color = "_Blue"
+	health_bar = get_node("../Player%dHealth" % player_id)
+	coin_bar = get_node("../Player%dCoins" % player_id)
 
 func _physics_process(delta):
 	if is_dead:
@@ -195,27 +198,51 @@ func set_animation(animation_name: String, color: String):
 		$AnimatedSprite2D.play(animation_name + color)
 
 func update_animation():
-	if health > 2:
-		health_bar.play("Player_One_Full")
-	elif health > 1:
-		health_bar.play("Player_One_Two_HP")
-	elif health > 0:
-		health_bar.play("Player_One_HP")
-	else:
-		health_bar.play("Player_One_Empty")
+	if player_id == 1:
+		if health > 2:
+			health_bar.play("Player_One_Full")
+		elif health > 1:
+			health_bar.play("Player_One_Two_HP")
+		elif health > 0:
+			health_bar.play("Player_One_One_HP")
+		else:
+			health_bar.play("Player_One_Empty")
 
-	if coin_count > 4:
-		coin_bar.play("Coins_Five")
-	elif coin_count > 3:
-		coin_bar.play("Coins_Four")
-	elif coin_count > 2:
-		coin_bar.play("Coins_Three")
-	elif coin_count > 1:
-		coin_bar.play("Coins_Two")
-	elif coin_count > 0:
-		coin_bar.play("Coins_One")
-	else:
-		coin_bar.play("Coins_Empty")
+		if coin_count > 4:
+			coin_bar.play("Coins_Five")
+		elif coin_count > 3:
+			coin_bar.play("Coins_Four")
+		elif coin_count > 2:
+			coin_bar.play("Coins_Three")
+		elif coin_count > 1:
+			coin_bar.play("Coins_Two")
+		elif coin_count > 0:
+			coin_bar.play("Coins_One")
+		else:
+			coin_bar.play("Coins_Empty")
+	elif player_id == 2:
+		if health > 2:
+			health_bar.play("Player_Two_Full")
+		elif health > 1:
+			health_bar.play("Player_Two_Two_HP")
+		elif health > 0:
+			health_bar.play("Player_Two_HP")
+		else:
+			health_bar.play("Player_Two_Empty")
+
+		if coin_count > 4:
+			coin_bar.play("Coins_Five")
+		elif coin_count > 3:
+			coin_bar.play("Coins_Four")
+		elif coin_count > 2:
+			coin_bar.play("Coins_Three")
+		elif coin_count > 1:
+			coin_bar.play("Coins_Two")
+		elif coin_count > 0:
+			coin_bar.play("Coins_One")
+		else:
+			coin_bar.play("Coins_Empty")
+		
 
 	if is_stunned:
 		set_animation("Stun", color)
